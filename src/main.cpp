@@ -8,14 +8,12 @@ char turn = 'x'; // displaying number in the board
 void display_board()
 {
 	// Displaying Board
-		system("cls");
-		cout << "\n			T I C K  T O C   T A C		" << endl
+	system("cls");
+	cout << "\n			T I C K  T O C   T A C		" << endl
 		 << endl;
 	cout << " =>  Player 1[X] <=" << endl
 		 << " 	VS  " << endl
 		 << " =>   Player 2[O] <= " << endl;
-
-
 
 	cout << endl;
 	cout << "		     |     |     " << endl;
@@ -110,7 +108,6 @@ A:
 int main()
 {
 
-	
 	while (true)
 	{
 		display_board();
