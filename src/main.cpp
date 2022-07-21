@@ -2,12 +2,20 @@
 using namespace std;
 
 char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
-int choice;
+int choice, row, col;
 char turn = 'x'; // displaying number in the board
 
 void display_board()
 {
 	// Displaying Board
+		system("cls");
+		cout << "\n			T I C K  T O C   T A C		" << endl
+		 << endl;
+	cout << " =>  Player 1[X] <=" << endl
+		 << " 	VS  " << endl
+		 << " =>   Player 2[O] <= " << endl;
+
+
 
 	cout << endl;
 	cout << "		     |     |     " << endl;
@@ -36,50 +44,76 @@ A:
 	switch (choice)
 	{
 	case 1:
-		board[0][0] = 'X';
+		row = 0;
+		col = 0;
 		break;
 	case 2:
-		board[0][1] = 'X';
+		row = 0;
+		col = 1;
 		break;
 	case 3:
-		board[0][2] = 'X';
+		row = 0;
+		col = 2;
 		break;
 	case 4:
-		board[1][0] = 'X';
+		row = 1;
+		col = 0;
 		break;
 	case 5:
-		board[1][1] = 'X';
+		row = 1;
+		col = 1;
 		break;
 	case 6:
-		board[1][2] = 'X';
+		row = 1;
+		col = 2;
 		break;
 	case 7:
-		board[2][0] = 'X';
+		row = 2;
+		col = 0;
 		break;
 	case 8:
-		board[2][1] = 'X';
+		row = 2;
+		col = 1;
 		break;
 	case 9:
-		board[2][2] = 'X';
+		row = 2;
+		col = 2;
 		break;
 	default:
 		cout << endl
 			 << "Invalid. Input Again" << endl;
 		goto A;
 	}
+	// change turns
+
+	if (turn == 'x' && board[row][col] != 'X' && board[row][col] != 'O')
+	{
+		board[row][col] = 'X';
+		turn = 'o';
+	}
+	else if (turn == 'o' && board[row][col] != 'X' && board[row][col] != 'O')
+	{
+		board[row][col] = 'O';
+		turn = 'x';
+	}
+	else
+	{
+		cout << endl
+			 << "                        Already ***BOOKED***!!!"
+			 << endl
+			 << endl
+			 << "                          **No Cheating**" << endl;
+		player_turn();
+	}
 }
 
 int main()
 {
-	cout << "\n			T I C K  T O C   T A C		" << endl
-		 << endl;
-	cout << " =>  Player 1[X] <=" << endl
-		 << " 	VS  " << endl
-		 << "=>   Player 2[O] <= " << endl;
 
-	display_board();
+	
 	while (true)
 	{
+		display_board();
 
 		player_turn();
 		display_board();
