@@ -3,7 +3,8 @@ using namespace std;
 
 char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 int choice, row, col;
-char turn = 'x'; // displaying number in the board
+char turn = 'X'; // displaying number in the board
+bool draw;
 
 void display_board()
 {
@@ -29,16 +30,19 @@ void display_board()
 	cout << endl;
 }
 
+/* turns for players*/
+
 void player_turn()
 {
 	cout << "\n			T I C K  T O C   T A C		" << endl
 		 << endl;
-	if (turn == 'x')
+
+	if (turn == 'X')
 		cout << " Player 1[X] Turns: ";
-	if (turn == 'o')
+	if (turn == 'O')
 		cout << " Player 2[O] Turns: ";
-A:
-	cin >> choice; // turns for players
+
+	cin >> choice;
 	switch (choice)
 	{
 	case 1:
@@ -80,19 +84,19 @@ A:
 	default:
 		cout << endl
 			 << "Invalid. Input Again" << endl;
-		goto A;
+		break;
 	}
 	// change turns
 
-	if (turn == 'x' && board[row][col] != 'X' && board[row][col] != 'O')
+	if (turn == 'X' && board[row][col] != 'X' && board[row][col] != 'O')
 	{
 		board[row][col] = 'X';
-		turn = 'o';
+		turn = 'O';
 	}
-	else if (turn == 'o' && board[row][col] != 'X' && board[row][col] != 'O')
+	else if (turn == 'O' && board[row][col] != 'X' && board[row][col] != 'O')
 	{
 		board[row][col] = 'O';
-		turn = 'x';
+		turn = 'X';
 	}
 	else
 	{
@@ -104,11 +108,40 @@ A:
 		player_turn();
 	}
 }
+/* Result Check*/
+
+bool check()
+{
+	int i, j;
+
+	/*Wins Check*/
+
+	for (i = 0; i < 3; i++)
+	{
+		if (board[i][0] == board[i][1] && board[i][0] == board[i][2]) // Check Row
+			return false;
+		else if (board[0][i] == board[1][i] && board[0][i] == board[2][i]) // Check Column
+			return false;
+
+		else if (board[0][0] == board[1][1] && board[0][0] == board[2][2] || board[0][2] == board[1][1] && board[0][2] == board[2][0]) // check diagonal
+			return false;
+	}
+
+	/* There is any box not filled yet*/
+
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 3; j++)
+			if (board[i][j] != 'X' && board[i][j] != 'O')
+				return true;
+	/* Draw */
+	draw = true;
+	return false;
+}
 
 int main()
 {
 
-	while (true)
+	while (check())
 	{
 		display_board();
 
@@ -117,4 +150,18 @@ int main()
 	}
 
 	cout << endl;
+
+	/* Decide Who wins*/
+
+	if (turn == 'X' && draw == false)
+		cout << "	***Congratulations...!!!***	" << endl
+			 << endl
+			 << "	    *Player 2[O] Wins* " << endl;
+	else if (turn == 'O' && draw == false)
+		cout << "	***Congratulations...!!!***" << endl
+			 << "	    *Player 1[X] Wins* " << endl;
+	else
+		cout << "		Game Draw..!!!" << endl;
+		cout<<endl;
+		
 }
