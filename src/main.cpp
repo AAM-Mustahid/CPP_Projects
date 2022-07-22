@@ -15,7 +15,7 @@ void display_board()
 		 << endl;
 	cout << " =>  Player 1[X] <=" << endl
 		 << " 	VS  " << endl
-		 << " =>   Player 2[O] <= " << endl;
+		 << " =>  Player 2[O] <= " << endl;
 
 	cout << endl;
 	cout << "		     |     |     " << endl;
