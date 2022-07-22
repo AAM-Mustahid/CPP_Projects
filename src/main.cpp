@@ -8,7 +8,8 @@ bool draw;
 
 void display_board()
 {
-	// Displaying Board
+	/* Displaying Board*/
+
 	system("cls");
 	cout << "\n			T I C K  T O C   T A C		" << endl
 		 << endl;
@@ -86,7 +87,7 @@ void player_turn()
 			 << "Invalid. Input Again" << endl;
 		break;
 	}
-	// change turns
+	/*Change Turns*/
 
 	if (turn == 'X' && board[row][col] != 'X' && board[row][col] != 'O')
 	{
@@ -162,6 +163,7 @@ int main()
 			 << "	    *Player 1[X] Wins* " << endl;
 	else
 		cout << "		Game Draw..!!!" << endl;
-		cout<<endl;
-		
+	cout << endl;
+
+	return 0;
 }
